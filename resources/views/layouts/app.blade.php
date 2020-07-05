@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
 
-    <title>Laravel</title>
+    <title>Garbage List</title>
 </head>
 <body>
 @php

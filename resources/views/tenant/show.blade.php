@@ -9,14 +9,14 @@
     </h2>
     <table class="ui striped very compact table">
         <thead>
-        <tr><th>Gewicht in Gram</th>
+        <tr><th>Gewicht in Kilogramm</th>
             <th>Datum</th>
             <th></th>
         </tr></thead>
         <tbody>
         @foreach($garbags as $garbage)
             <tr>
-                <td data-label="Gewicht">{{ $garbage->weight }}g</td>
+                <td data-label="Gewicht">{{ $garbage->weight/1000 }} kg</td>
                 <td data-label="Datum">{{ date('d. M. Y', strtotime($garbage->date))}}</td>
                 <td class="right aligned"><a class="mini ui button" href="{{route('garbage.show', $garbage->id)}}">Detail</a> </td>
             </tr>
