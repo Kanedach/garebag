@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'GarbageController@index')->name('garbages');
-Route::get('/new/{id}', 'GarbageController@create')->name('garbage.create');
-Route::post('/new', 'GarbageController@store')->name('garbage.create');
+Route::get('/', 'IndexController@index')->name('garbages');
+Route::get('/logout', 'IndexController@destroy')->name('logout');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('tenant')->group(function () {
+    Route::get('create', 'TenantController@create')->name('tenant.create');
+    Route::post('create', 'TenantController@store')->name('tenant.create');
+    Route::get('{id}', 'HomeController@index')->name('tenant.show');
+    Route::get('delete/{id}', 'HomeController@index')->name('tenant.delete');
+});
+
+Route::prefix('garbage')->group(function () {
+    Route::get('/new', 'GarbageController@create')->name('garbage.create');
+    Route::get('/new/{id}', 'IndexController@create')->name('garbage.create');
+    Route::post('/new', 'IndexController@store')->name('garbage.create');
+});

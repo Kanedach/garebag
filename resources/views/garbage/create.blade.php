@@ -28,12 +28,27 @@
                 </div>
             </div>
             <div class="sixteen wide column">
-                <div class="column">
-                   <input type="text" name="tenant" value="{{$id}}" hidden>
-                    @error('tenant')
-                    <div class="alert alert-danger">ID Missing</div>
-                    @enderror
-                </div>
+                @if(isset($id))
+                    <div class="column">
+                        <div class="ui labeled fluid input disabled">
+                            <input type="text" name="tenant" value="{{$id ?? ''}}">
+                        </div>
+                        @error('tenant')
+                        <div class="alert alert-danger">ID Missing</div>
+                        @enderror
+                    </div>
+                @else
+                    <div class="ui selection dropdown fluid">
+                        <input type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Partei</div>
+                        <div class="menu">
+                            @foreach($tenants as $tenant)
+                                <div class="item" data-value="{{$tenant->id}}">{{$tenant->name}}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="sixteen wide column">
                 <div class="column">
