@@ -23,12 +23,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('tenant')->group(function () {
     Route::get('create', 'TenantController@create')->name('tenant.create');
     Route::post('create', 'TenantController@store')->name('tenant.create');
-    Route::get('{id}', 'HomeController@index')->name('tenant.show');
-    Route::get('delete/{id}', 'HomeController@index')->name('tenant.delete');
+    Route::get('{id}', 'TenantController@show')->name('tenant.show');
+    Route::delete('{id}', 'HomeController@index')->name('tenant.delete');
 });
 
 Route::prefix('garbage')->group(function () {
     Route::get('/new', 'GarbageController@create')->name('garbage.create');
     Route::get('/new/{id}', 'IndexController@create')->name('garbage.create');
     Route::post('/new', 'IndexController@store')->name('garbage.create');
+    Route::get('/{id}', 'GarbageController@show')->name('garbage.show');
+    Route::get('/delete/{id}', 'GarbageController@destroy')->name('garbage.destroy');
 });

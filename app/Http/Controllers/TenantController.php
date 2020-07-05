@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Garbage;
 use App\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller
 {
@@ -58,7 +60,10 @@ class TenantController extends Controller
      */
     public function show($id)
     {
-        //
+        $data =  [];
+        $data['tenant'] = Tenant::find($id);
+        $data['garbags'] = DB::select('select * from garbages where tenant_id = :id order by date desc', ['id' => $id]);
+        return view('tenant/show', $data);
     }
 
     /**

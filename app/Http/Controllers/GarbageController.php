@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Garbage;
 use App\Tenant;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,9 @@ class GarbageController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [];
+        $data['garbage'] = Garbage::find($id);
+        return view('garbage/show', $data);
     }
 
     /**
@@ -86,6 +89,8 @@ class GarbageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $garbage = Garbage::find($id);
+        $garbage->delete();
+        return redirect()->route('home');
     }
 }

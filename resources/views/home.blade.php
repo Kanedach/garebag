@@ -10,11 +10,14 @@
             <div class="content">
                 <div class="center aligned header">Tenants</div>
                 <div class="center aligned description">
-                    <div class="ui middle aligned divided list">
+                    <div class="ui relaxed divided list">
                         @foreach($tenants as $tenant)
                             <div class="item">
-                                <div class="content">
-                                    {{$tenant->name}}
+                                <div class="item">
+                                    <div class="content">
+                                        <a class="header" href="{{route('tenant.show', $tenant->id)}}">{{$tenant->name}}</a>
+                                        <div class="description">Created at {{date('d. M. Y', strtotime($tenant->created_at))}}</div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
