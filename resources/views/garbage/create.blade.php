@@ -39,7 +39,7 @@
                     </div>
                 @else
                     <div class="ui selection dropdown fluid">
-                        <input type="hidden" name="gender">
+                        <input type="hidden" name="tenant">
                         <i class="dropdown icon"></i>
                         <div class="default text">Partei</div>
                         <div class="menu">
