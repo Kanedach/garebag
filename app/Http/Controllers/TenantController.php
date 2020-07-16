@@ -30,7 +30,7 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('tenant/create');
+        return view('tenant/form');
     }
 
     /**

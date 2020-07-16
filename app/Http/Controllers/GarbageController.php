@@ -30,8 +30,11 @@ class GarbageController extends Controller
     public function create()
     {
         $data = [];
+        $data['weight'] = 0;
+        $data['date'] = null;
         $data['tenants'] = Tenant::all();
-        return view('garbage/create', $data);
+        $data['edit'] = 0;
+        return view('garbage/form', $data);
     }
 
     /**
@@ -55,6 +58,7 @@ class GarbageController extends Controller
     {
         $data = [];
         $data['garbage'] = Garbage::find($id);
+        $data['tenant'] = Tenant::find($id);
         return view('garbage/show', $data);
     }
 

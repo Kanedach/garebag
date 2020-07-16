@@ -12,7 +12,7 @@
         <tbody>
             <tr>
                 <td data-label="Value">Gewicht</td>
-                <td data-label="Key">{{ $garbage->weight }}</td>
+                <td data-label="Key">{{ $garbage->weight/1000 }} kg.</td>
             </tr>
             <tr>
                 <td data-label="Value">Abfall Datum</td>
@@ -24,7 +24,11 @@
             </tr>
             <tr>
                 <td data-label="Value">Partei ID</td>
-                <td data-label="Key">{{ $garbage->tenant_id }}</td>
+                <td data-label="Key"><a href="{{route('tenant.show', $garbage->tenant_id)}}">{{ $garbage->tenant_id }}</a></td>
+            </tr>
+            <tr>
+                <td data-label="Value">Partei</td>
+                <td data-label="Key"><a href="{{route('tenant.show', $garbage->tenant_id)}}">{{ $tenant->name }}</a></td>
             </tr>
             <tr>
                 <td data-label="Value">Erstellt</td>

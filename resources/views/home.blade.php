@@ -26,7 +26,7 @@
             </div>
             <div class="extra content">
                 <div class="center aligned author">
-                    <a class="ui button" href="{{route('tenant.create')}}">Create</a>
+                    <a class="ui fluid button" href="{{route('tenant.create')}}">Create</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="extra content">
                 <div class="center aligned author">
-                    <a class="ui button" href="{{route('garbage.create')}}">Create</a>
+                    <a class="ui fluid button" href="{{route('garbage.create')}}">Create</a>
                 </div>
             </div>
         </div>
