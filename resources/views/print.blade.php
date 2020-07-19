@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .page-break {
+            page-break-after: always;
+        }
+        body{
+            font-size: 12px;
+        }
+    </style>
     <title>Garbage List</title>
 </head>
 <body>
-<h1>
-    Müllliste gedruckt am  {{ date('d.m.Y', strtotime(now())) }}
-</h1>
-<table class="ui striped very compact table">
+<h1>Apfallliste</h1>
+<h4 class="lead">Gedruckt am {{ date('d.m.Y', strtotime(now())) }}</h4>
+</div>
+</div>
+<table class="table table-striped">
     <thead>
     <tr>
-        <th>Gewicht in Kilogram</th>
-        <th>Datum</th>
-        <th>Partei</th>
+        <th scope="col">Gewicht in Kilogram</th>
+        <th scope="col">Datum</th>
+        <th scope="col">Partei</th>
     </tr>
     </thead>
     <tbody>
     @foreach($garbages as $garbage)
         <tr>
-            <td data-label="Gewicht">{{ $garbage->weight/1000 }} kg</td>
-            <td data-label="Datum">{{ date('d. M. Y', strtotime($garbage->date))}}</td>
-            <td data-label="Partei">{{$garbage->name}}</td>
+            <td>{{ $garbage->weight/1000 }} kg</td>
+            <td>{{ date('d. M. Y', strtotime($garbage->date))}}</td>
+            <td>{{$garbage->name}}</td>
         </tr>
     @endforeach
     </tbody>

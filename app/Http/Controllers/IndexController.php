@@ -117,7 +117,8 @@ class IndexController extends Controller
             ->orderBy('garbages.date', 'desc')
             ->get();
         //return view('print', $data);
-        $pdf = PDF::loadView('welcome', $data);
+        $pdf = PDF::loadView('print', $data);
+        set_time_limit(300);
         return $pdf->stream('Müllliste_'.date('Y-m-d', strtotime(now())).'.pdf');
     }
 
