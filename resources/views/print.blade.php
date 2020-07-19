@@ -11,12 +11,27 @@
         body{
             font-size: 12px;
         }
+        .header,
+        .footer {
+            width: 100%;
+            text-align: center;
+            position: fixed;
+        }
+        .header {
+            top: 0px;
+        }
+        .footer {
+            bottom: 0px;
+        }
+        .pagenum:before {
+            content: counter(page);
+        }
     </style>
     <title>Garbage List</title>
 </head>
 <body>
 <h1>Apfallliste</h1>
-<h4 class="lead">Gedruckt am {{ date('d.m.Y', strtotime(now())) }}</h4>
+<p>Gedruckt am {{ date('d.m.Y', strtotime(now())) }} auf <a href="http://garbage-list.herokuapp.com/">http://garbage-list.herokuapp.com/</a></p>
 </div>
 </div>
 <table class="table table-striped">
@@ -37,5 +52,8 @@
     @endforeach
     </tbody>
 </table>
+<div class="footer">
+    Seite <span class="pagenum"></span>
+</div>
 </body>
 </html>
