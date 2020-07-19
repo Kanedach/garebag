@@ -6,6 +6,7 @@ use App\Garbage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class IndexController extends Controller
 {
@@ -31,9 +32,13 @@ class IndexController extends Controller
      */
     public function create($id)
     {
-        $url = [];
-        $url['id'] = $id;
-        return view('garbage/create', $url);
+        $data = [];
+        $data['id'] = $id;
+        $data['weight'] = null;
+        $data['date'] = date('Y-m-d', strtotime(now()));
+        $data['tenants'] = null;
+        $data['edit'] = 0;
+        return view('garbage/form', $data);
     }
 
     /**
@@ -104,4 +109,16 @@ class IndexController extends Controller
         Auth::logout();
         return redirect()->route('garbages');
     }
+
+    public function print() {
+        $data['garbages'] = DB::table('garbages')
+            ->join('tenants', 'garbages.tenant_id', '=', 'tenants.id')
+            ->select('garbages.*', 'tenants.name')
+            ->orderBy('garbages.date', 'desc')
+            ->get();
+        //return view('print', $data);
+        $pdf = PDF::loadView('welcome', $data);
+        return $pdf->stream('Müllliste_'.date('Y-m-d', strtotime(now())).'.pdf');
+    }
+
 }
