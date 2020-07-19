@@ -30,8 +30,8 @@ class GarbageController extends Controller
     public function create()
     {
         $data = [];
-        $data['weight'] = 0;
-        $data['date'] = null;
+        $data['weight'] = null;
+        $data['date'] = date('Y-m-d', strtotime(now()));
         $data['tenants'] = Tenant::all();
         $data['edit'] = 0;
         return view('garbage/form', $data);
@@ -69,7 +69,14 @@ class GarbageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [];
+        $data['id'] = $id;
+        $garbage_data = Garbage::find($id);
+        $data['weight'] = $garbage_data->weight;
+        $data['date'] = $garbage_data->date;
+        $data['tenants'] = null;
+        $data['edit'] = 1;
+        return view('garbage/form', $data);
     }
 
     /**
@@ -81,7 +88,19 @@ class GarbageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'weight' => 'bail | numeric | required',
+            'date' => 'bail | date | required',
+            'tenant' => 'bail | required',
+        ]);
+
+        $garbage_data = Garbage::find($id);
+        $garbage_data->weight = $request->input('weight');
+        $garbage_data->date = $request->input('date');
+        $garbage_data->tenant_id = $request->input('tenant');
+
+        $garbage_data->save();
+        return redirect()->route('garbage.show', $id);
     }
 
     /**
@@ -93,7 +112,8 @@ class GarbageController extends Controller
     public function destroy($id)
     {
         $garbage = Garbage::find($id);
+        $tenant_id = $garbage->tenant_id;
         $garbage->delete();
-        return redirect()->route('home');
+        return redirect()->route('tenant.show',$tenant_id);
     }
 }

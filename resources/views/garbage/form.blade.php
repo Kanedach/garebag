@@ -2,18 +2,18 @@
 @section('content')
     <h2 class="ui center aligned header">
         <div class="content">
-            Abfallerfassung
+            {{ $edit == 0 ? 'Abfallerfassung' : 'Abfallbearbeitung' }}
             <div class="sub header">Tipp: Recycling statt Wegwerfen.</div>
         </div>
     </h2>
-    <form method="post" action="{{route('garbage.create')}}">
+    <form method="post" action="{{$edit == 0 ? route('garbage.create') : route('garbage.edit', $id) }}">
         @method('POST')
         @csrf
         <div class="ui grid">
             <div class="sixteen wide column">
                 <div class="column">
                     <div class="ui right labeled fluid input focus">
-                        <input type="number" placeholder="Gewicht in Gramm" name="weight" id="weight" required>
+                        <input type="number" placeholder="Gewicht in Gramm" value="{{old('weight') ? old('weight'): $weight}}" name="weight" id="weight" required>
                         <div class="ui basic label">
                             g
                         </div>
@@ -23,7 +23,7 @@
             <div class="sixteen wide column">
                 <div class="column">
                     <div class="ui fluid input">
-                        <input type="date" value="{{date('Y-m-d', strtotime(now()))}}" name="date" id="date" required>
+                        <input type="date" value="{{old('date') ? old('date'): $date}}" name="date" id="date" required>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 @if(isset($id))
                     <div class="column">
                         <div class="ui labeled fluid input disabled">
-                            <input type="text" name="tenant" value="{{$id ?? ''}}">
+                            <input type="text" name="tenant" value="{{$id}}">
                         </div>
                         @error('tenant')
                         <div class="alert alert-danger">ID Missing</div>

@@ -36,14 +36,33 @@
             </tr>
         </tbody>
     </table>
-    <div class="sixteen wide column" style="margin-bottom: 15px">
-        <div class="column">
-            <a class="fluid ui red button" href="{{route('garbage.destroy', $garbage->id)}}">Löschen</a>
+    <div class="ui grid" style="margin-bottom: 15px">
+        <div class="row">
+            <div class="six wide column">
+                <a class="ui primary fluid button" href="{{route('garbage.edit', $garbage->id)}}">Bearbeiten</a>
+            </div>
+            <div class="four wide column">
+                <button class="ui red fluid button" onclick="$('.ui.modal').modal('setting', 'closable', false).modal('show');">Löschen</button>
+            </div>
+            <div class="six wide column">
+                <a class="ui grey fluid button" href="{{route('tenant.show', $garbage->tenant_id)}}">Zurück</a>
+            </div>
         </div>
     </div>
-    <div class="sixteen wide column">
-        <div class="column">
-            <a class="fluid ui grey button" href="{{route('tenant.show', $garbage->tenant_id)}}">Zurück</a>
+
+    <div class="ui modal">
+        <div class="header">
+            Mülleintrag löschen
+        </div>
+        <div class="image content">
+            <div class="description">
+                Möchtest du den Mülleintrag unwiederuflich löschen?
+            </div>
+        </div>
+        <div class="actions">
+            <button onclick="$('.ui.modal').modal('hide');" class="ui primary button">Nein</button>
+            <a class="ui red button" href="{{route('garbage.delete', $garbage->id)}}">Ja</a>
         </div>
     </div>
+
 @endsection

@@ -32,5 +32,7 @@ Route::prefix('garbage')->group(function () {
     Route::get('/new/{id}', 'IndexController@create')->name('garbage.create');
     Route::post('/new', 'IndexController@store')->name('garbage.create');
     Route::get('/{id}', 'GarbageController@show')->name('garbage.show');
-    Route::get('/delete/{id}', 'GarbageController@destroy')->name('garbage.destroy');
+    Route::get('/edit/{id}','GarbageController@edit')->name('garbage.edit');
+    Route::post('/edit/{id}', 'GarbageController@update')->name('garbage.edit');
+    Route::get('/delete/{id}', 'GarbageController@destroy')->name('garbage.delete');
 });
