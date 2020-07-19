@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172946429-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-172946429-1');
+    </script>
 
     <title>Garbage List</title>
 </head>

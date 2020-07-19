@@ -27,10 +27,6 @@
                 <td data-label="Key"><a href="{{route('tenant.show', $garbage->tenant_id)}}">{{ $garbage->tenant_id }}</a></td>
             </tr>
             <tr>
-                <td data-label="Value">Partei</td>
-                <td data-label="Key"><a href="{{route('tenant.show', $garbage->tenant_id)}}">{{ $tenant->name }}</a></td>
-            </tr>
-            <tr>
                 <td data-label="Value">Erstellt</td>
                 <td data-label="Key">{{ date('d. M. Y', strtotime($garbage->created_at))}}</td>
             </tr>
