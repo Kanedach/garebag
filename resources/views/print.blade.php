@@ -30,7 +30,7 @@
     <title>Garbage List</title>
 </head>
 <body>
-<h1>Apfallliste</h1>
+<h1>Abfallliste</h1>
 <p>Gedruckt am {{ date('d.m.Y', strtotime(now())) }} auf <a href="http://garbage-list.herokuapp.com/">http://garbage-list.herokuapp.com/</a></p>
 </div>
 </div>
